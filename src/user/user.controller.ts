@@ -1,6 +1,7 @@
 import { Body, Controller, Get, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { UserServices } from './user.services';
 import CreateUserDto from './dto/create-user.dto';
+import {ApiResponse,ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 
 @Controller('users')
 export class UserController {
@@ -8,11 +9,13 @@ export class UserController {
 
 //'postUser()' will handle the creating of new User
   @Post('post')
+  @ApiResponse({ status: 200, description: 'create user' })
   postUser( @Body() user: CreateUserDto) {
     return this.usersServices.insert(user);
   }
 // 'getAll()' returns the list of all the existing users in the database
   @Get()
+  @ApiResponse({ status: 200, description: 'get all users' })
   getAll() {
     return this.usersServices.getAllUsers();
   }
@@ -20,6 +23,7 @@ export class UserController {
 //'getBooks()' return all the books which are associated with the user 
 // provided through 'userID' by the request  
   @Get('books')
+  @ApiResponse({ status: 200, description: 'get all books of a user' })
   getBooks( @Body('userID', ParseIntPipe) userID: number ) {
     return this.usersServices.getBooksOfUser(userID);
   }
