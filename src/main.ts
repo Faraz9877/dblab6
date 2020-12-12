@@ -9,6 +9,10 @@ async function bootstrap() {
         .setDescription('The API description for DB-Lab5.')
         .setVersion('1.0')
         .addTag('db')
+        .addBearerAuth(
+            { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+            'access-token',
+          )
         .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);

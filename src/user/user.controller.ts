@@ -22,14 +22,4 @@ export class UserController {
   getAll() {
     return this.usersServices.getAllUsers();
   }
-
-//'getBooks()' return all the books which are associated with the user 
-// provided through 'userID' by the request  
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
-  @Get('books')
-  @ApiResponse({ status: 200, description: 'get all books of a user' })
-  getBooks( @Body('userID', ParseIntPipe) userID: number ) {
-    return this.usersServices.getBooksOfUser(userID);
-  }
 }
