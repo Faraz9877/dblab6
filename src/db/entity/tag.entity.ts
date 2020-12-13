@@ -10,6 +10,6 @@ export default class TagEntity extends BaseEntity {
   @Column({ length: 500 })
   name: string;
 
-  @ManyToOne(type => TaskEntity, task => task.tags)
+  @ManyToOne(type => TaskEntity, task => task.tags, { onDelete: 'CASCADE' })
   task: TaskEntity;
 }

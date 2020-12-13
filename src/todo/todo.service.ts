@@ -16,12 +16,6 @@ export class TodoService {
     async insertCategory(categoryDetails: CreateCategoryDto): Promise<CategoryEntity> {
         const categoryEntity: CategoryEntity = CategoryEntity.create();
         categoryEntity.name = categoryDetails.name;
-        categoryEntity.tasks=[];
-        for ( let i = 0; i < categoryDetails.taskIDs.length ; i++)
-        {
-            const task = await TaskEntity.findOne(categoryDetails.taskIDs[i]);
-            categoryEntity.tasks.push(task);
-        }
         await CategoryEntity.save(categoryEntity);
         return categoryEntity;
     }
@@ -29,7 +23,6 @@ export class TodoService {
     async insertItem(itemDetails: CreateItemDto): Promise<ItemEntity> {
         const itemEntity: ItemEntity = ItemEntity.create();
         itemEntity.description = itemDetails.description;
-        itemEntity.task = await TaskEntity.findOne(itemDetails.taskID);
         await ItemEntity.save(itemEntity);
         return itemEntity;
     }
@@ -37,7 +30,6 @@ export class TodoService {
     async insertTag(tagDetails: CreateTagDto): Promise<TagEntity> {
         const tagEntity: TagEntity = TagEntity.create();
         tagEntity.name = tagDetails.name;
-        tagEntity.task = await TaskEntity.findOne(tagDetails.taskID);
         await TagEntity.save(tagEntity);
         return tagEntity;
     }

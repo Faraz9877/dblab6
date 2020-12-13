@@ -4,8 +4,8 @@ export default class EditTaskDto {
   @ApiProperty({description:'Enter the ID of task: ', default: 1})
   readonly taskId: number;
 
-  @ApiProperty({description:'Enter the owner\'s ID: ', minLength: 1, default: 'User' ,maxLength:20})
-  readonly userID: string;
+  @ApiProperty({description:'Enter the owner\'s ID: ', default: 1})
+  readonly userID: number;
 
   @ApiProperty({description:'Enter the description of task: ', minLength: 1, default: 'Task' ,maxLength:500})
   readonly description: string;

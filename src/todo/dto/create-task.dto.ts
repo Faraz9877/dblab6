@@ -1,8 +1,8 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export default class CreateTaskDto {
-  @ApiProperty({description:'Enter the owner\'s ID: ', minLength: 1, default: 'User' ,maxLength:20})
-  readonly userID: string;
+  @ApiProperty({description:'Enter the owner\'s ID: ', default: 1})
+  readonly userID: number;
   
   @ApiProperty({description:'Enter task type: (0: text, 1: items) ', minLength: 1, default: false ,maxLength:1})
   readonly taskType: boolean;

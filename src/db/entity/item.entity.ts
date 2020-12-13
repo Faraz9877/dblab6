@@ -10,6 +10,6 @@ export default class ItemEntity extends BaseEntity {
   @Column({ length: 500 })
   description: string;
 
-  @ManyToOne(type => TaskEntity, task => task.items)
+  @ManyToOne(type => TaskEntity, task => task.items, { onDelete: 'CASCADE' })
   task: TaskEntity;
 }
