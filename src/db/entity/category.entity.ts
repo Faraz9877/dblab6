@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from 't
 import TaskEntity from './task.entity';
 
 @Entity()
-export default class UserEntity extends BaseEntity {
+export default class CategoryEntity extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,15 +10,7 @@ export default class UserEntity extends BaseEntity {
   @Column({ length: 500 })
   name: string;
 
-  @Column({ length: 500 })
-  password: string;
-
   // 1:n relation with taskEntity 
-  @OneToMany( type => TaskEntity , task => task.user)
+  @OneToMany( type => TaskEntity , task => task.category)
   tasks: TaskEntity[];
-
-  // n:n relation with genre
-  // @ManyToMany(type => GenreEntity)
-  // @JoinTable()
-  // genres: GenreEntity[];
 }
